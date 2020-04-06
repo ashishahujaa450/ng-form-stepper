@@ -1,0 +1,61 @@
+<h1>Payment Information</h1>
+<hr />
+<form #paymentForm="ngForm" (ngSubmit)="onSubmit(paymentForm)">
+  <div class="form-group">
+    <label for="card">Select Card Type</label>
+    <select
+      class="form-control"
+      id="card"
+      [ngModel]="defaultCard"
+      required
+      name="cardname"
+    >
+      <option value="rupay">Rupay</option>
+      <option value="visa">Visa</option>
+      <option value="masterCard">Master Card</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="atmNumber">Enter ATM Number:</label>
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Enter Atm Number"
+      id="atmNumber"
+      name="atmNumber"
+      ngModel
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="pin">Enter Pin Number:</label>
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Enter Pin Number"
+      id="pin"
+      ngModel
+      name="atmPin"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="cvv">Enter CVV:</label>
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Enter Cvv"
+      id="cvv"
+      name="cvv"
+      ngModel
+      required
+    />
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="!paymentForm.valid">
+    Checkout
+  </button>
+</form>

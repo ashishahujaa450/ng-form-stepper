@@ -1,0 +1,67 @@
+<form #myForm="ngForm" (ngSubmit)="onSubmitForm(myForm)">
+  <div class="form-group">
+    <label for="email">Email address:</label>
+    <input
+      type="email"
+      class="form-control"
+      placeholder="Enter email"
+      id="email"
+      ngModel
+      name="userEmail"
+      required
+      email
+      #myEmail="ngModel"
+    />
+    <small
+      id="emailHelp"
+      class="form-text text-muted"
+      *ngIf="!myEmail.valid && myEmail.touched"
+      >Please enter the valid email address!</small
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="subscription">Subscription</label>
+    <select
+      class="form-control"
+      id="subscription"
+      name="userSubscription"
+      [ngModel]="defaultSub"
+      required
+    >
+      <option value="basic">Basic</option>
+      <option value="advance">Advance</option>
+      <option value="pro">Pro</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+    <input
+      type="password"
+      class="form-control"
+      placeholder="Enter password"
+      id="pwd"
+      name="userPwd"
+      ngModel
+      required
+      #myPwd="ngModel"
+    />
+    <small
+      id="emailHelp"
+      class="form-text text-muted"
+      *ngIf="!myPwd.valid && myPwd.touched"
+      >Please enter valid Password!</small
+    >
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">
+    Submit
+  </button>
+</form>
+
+<section class="mt-5" *ngIf="isSubmitted">
+  <h4 class="mb-3">Your Data</h4>
+  <p>Email: {{ Data.email }}</p>
+  <p>Subscription: {{ Data.subscription }}</p>
+  <p>password: {{ Data.pwd }}</p>
+</section>

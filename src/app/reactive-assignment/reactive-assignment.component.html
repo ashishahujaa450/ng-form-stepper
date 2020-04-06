@@ -1,0 +1,59 @@
+<form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="projectName">Project Name:</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Enter Project name"
+      id="projectName"
+      formControlName="projectName"
+    />
+    <div class="d-flex flex-column">
+      <span
+        class="alert alert-danger m-0"
+        *ngIf="
+          projectForm.get('projectName').invalid &&
+          projectForm.get('projectName').errors['required'] == true &&
+          projectForm.get('projectName').touched
+        "
+        >Project Name is require!</span
+      >
+      <span
+        class="alert alert-danger m-0"
+        *ngIf="
+          projectForm.get('projectName').invalid &&
+          projectForm.get('projectName').errors['projectForbidden'] == true &&
+          projectForm.get('projectName').touched
+        "
+        >Project Name Cannot be 'test', Please choose another one.</span
+      >
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email address:</label>
+    <input
+      type="email"
+      class="form-control"
+      placeholder="Enter email"
+      id="email"
+      formControlName="email"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="projectStatus">Project status</label>
+    <select class="form-control" id="projectStatus" formControlName="status">
+      <option value="stable">Stable</option>
+      <option value="critical">Critical</option>
+      <option value="finished">Finished</option>
+    </select>
+  </div>
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="projectForm.invalid"
+  >
+    Submit
+  </button>
+</form>

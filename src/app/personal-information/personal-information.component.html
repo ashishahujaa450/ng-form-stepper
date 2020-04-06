@@ -1,0 +1,148 @@
+<h1>Personal Information</h1>
+<hr />
+
+<form #personalInfo="ngForm" (ngSubmit)="onSubmit(personalInfo)">
+  <div class="alert alert-danger" *ngIf="personalFormIsValid">
+    Your Form Details are Invalid!
+  </div>
+
+  <div id="namingDetails" #namingGroup ngModelGroup="namingGroup">
+    <div class="form-group">
+      <label for="fname">First Name:</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter first name"
+        id="fname"
+        name="firstName"
+        ngModel
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="lname">Last Name:</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter last name"
+        id="lname"
+        name="lastName"
+        ngModel
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="fatherName">Father Name:</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter Father name"
+        id="fatherName"
+        name="fatherName"
+        ngModel
+        required
+      />
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Enter Email:</label>
+    <input
+      type="email"
+      class="form-control"
+      placeholder="Enter Email"
+      id="email"
+      name="email"
+      email
+      #EmailAddress="ngModel"
+      ngModel
+      required
+    />
+    <small
+      id="emailHelp"
+      class="form-text text-muted"
+      *ngIf="!EmailAddress.valid && EmailAddress.touched"
+      >Please Enter a valid email address.</small
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="age">Enter Age:</label>
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Enter Age"
+      id="age"
+      name="age"
+      ngModel
+      required
+      #age="ngModel"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="subscription">Select Subscription</label>
+    <select
+      class="form-control"
+      id="subscription"
+      name="subscription"
+      [ngModel]="defaultSubscription"
+    >
+      <option value="basic">basic</option>
+      <option value="advance">advancce</option>
+      <option value="pro">pro</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Select Gender</label>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input
+          type="radio"
+          class="form-check-input"
+          name="gender"
+          ngModel
+          id="male"
+          value="male"
+          required
+        />Male
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input
+          type="radio"
+          class="form-check-input"
+          name="gender"
+          ngModel
+          id="female"
+          value="female"
+          required
+        />Female
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+    <input
+      type="password"
+      class="form-control"
+      placeholder="Enter password"
+      id="pwd"
+      ngModel
+      name="password"
+      required
+    />
+  </div>
+
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="!personalInfo.valid"
+  >
+    Submit
+  </button>
+</form>

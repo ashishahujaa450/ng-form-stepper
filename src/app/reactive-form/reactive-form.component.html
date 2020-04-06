@@ -1,0 +1,65 @@
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+  <div [formGroupName]="'userData'">
+    <div class="form-group">
+      <label for="email">Email address:</label>
+      <input
+        type="email"
+        class="form-control"
+        placeholder="Enter email"
+        id="email"
+        formControlName="email"
+      />
+      <p>
+        <span
+          class="alert alert-danger"
+          *ngIf="
+            signUpForm.get('userData.email').invalid &&
+            signUpForm.get('userData.email').touched
+          "
+          >Please enter correct email address</span
+        >
+
+        <span
+          *ngIf="signUpForm.get('userData.email').errors['forBiddenUserName']"
+          class="alert alert-warning"
+          >You cant use this email address!</span
+        >
+      </p>
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input
+        type="password"
+        class="form-control"
+        placeholder="Enter password"
+        id="pwd"
+        formControlName="pwd"
+      />
+    </div>
+  </div>
+  <div class="form-check" *ngFor="let gender of genders">
+    <input
+      class="form-check-input"
+      type="radio"
+      name="gender"
+      id="{{ gender }}"
+      value="{{ gender }}"
+      formControlName="gender"
+    />
+    <label class="form-check-label" for="{{ gender }}">
+      {{ gender }}
+    </label>
+  </div>
+
+  <div formArrayName="hobbies">
+    <h4>Your Hobbies</h4>
+    <button class="btn btn-primary" type="button" (click)="addHobbies()">
+      Add Hobbies
+    </button>
+
+    <div class="form-group" *ngFor="let hobbyControl of control; let i = index">
+      <input type="text" class="form-control" [formControlName]="i" />
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary mt-3">Submit</button>
+</form>
